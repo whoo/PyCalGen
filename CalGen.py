@@ -23,6 +23,8 @@ cal=Calendar()
 evt=Event()
 
 cal['X-CALENDARSERVER-ACCESS']		="CONFIDENTIAL"
+# CONFIDENTIAL | PUBLIC
+
 evt.add('dtstart',datetime(2014,04,29,20,0,0,tzinfo=pytz.timezone('America/Montreal')))
 evt.add('dtend',datetime(2014,04,29,21,0,0,tzinfo=pytz.timezone('America/Montreal')))
 evt.add('summary','Evenement secret')
@@ -31,10 +33,11 @@ evt.add('description','Generated Evenement')
 cal.add_component(evt)
 
 
-#evt2=Event()
-#evt2.add('dtstart',datetime(2014,04,30,20,0,0,tzinfo=pytz.timezone('America/Montreal')))
-#evt2.add('dtend',datetime(2014,04,30,21,0,0,tzinfo=pytz.timezone('America/Montreal')))
-#cal.add_component(evt2)
+evt2=Event()
+evt2.add('summary','Multiple Day')
+evt2.add('dtstart;VALUE=DATE','20140429')
+evt2.add('dtend;VALUE=DATE','20140501')
+cal.add_component(evt2)
 
 
 f=open('example.ics','wb')
